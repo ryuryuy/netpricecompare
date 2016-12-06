@@ -36,6 +36,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    amazon-ecs (2.5.0)
+      nokogiri (~> 1.4)
+      ruby-hmac (~> 0.3)
     arel (6.0.3)
     autoprefixer-rails (6.5.3)
       execjs
@@ -132,6 +135,7 @@ GEM
     rakuten_web_service (1.4.1)
     rdoc (4.3.0)
     ref (2.0.0)
+    ruby-hmac (0.4.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -176,6 +180,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amazon-ecs
   bcrypt (~> 3.1.7)
   bootstrap-sass
   byebug
