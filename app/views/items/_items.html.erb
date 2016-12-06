@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+    <% items.each do |item| %>
+      <div class="item-box">
+        <div class="image">
+          <div class="img-wrap">
+             <meta charset="utf-8">
+            <% content_for :extend_menu do %>
+            title:<%= @user%> - rakuten
+            description:<%= @user%>のrakutenページ。[ユーザー名]の検索したrakuten表示しています。
+            <% end %>
+            <% #TODO 商品画像 %>
+            <%#= image_tag("no-image.png" , alt: item['itemName']) %>
+            <!--0：商品画像無し-->
+            <% if response['imageFlag']=="0" then %> 
+              <%= image_tag("no-image.png" , alt: item['itemName']) %>
+            <% else response['imageFlag'] == "1" %>
+               <%#= image_tag item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '') , alt: item['itemName'] %>
+               <%= image_tag item['smallImageUrls'].first['imageUrl'] , alt: item['itemName'] %>
+            <% end %>        
+          </div>
+        </div>
+        
+        <div class="detail">
+          <p class="title">
+            <% #TODO 商品タイトル %>
+            <%= link_to item['itemName'],item['itemUrl'] %>
+         </p>
+        <div class="detail">
+          <p class="price">    
+            <%= item['itemPrice'] %> 円(Rakuten)
+            <%#= link_to item['itemUrl'], item['itemName'] %>
+            <!--仮タイトル-->
+          </p>
+        </div>
+        
+        <!--<div class="action clearfix">-->
+          <%#= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Want") ,
+                      :class => "btn-want btn btn-danger btn-sm want",
+                      :item_code => "want-#{item['itemCode']}",
+                      :remote => true,
+                      :method => :post %>
+          <%#= link_to "" , ownerships_path(item_code: item['itemCode'] , type: "Have") ,
+                      :class => "btn-have btn btn-warning btn-sm have",
+                      :item_code => "have-#{item['itemCode']}",
+                      :remote => true,
+                      :method => :post %>
+                      
+                                  
+        <!--</div>-->
+      </div>
+    <% end %>
+  </div>
+</div>
