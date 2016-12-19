@@ -1,8 +1,47 @@
-<% if @items.present? %>
-  <% @items.each do |book| %>
-    <div class="list">
-      <%= link_to (image_tag(book.image_url, style: "width: 70px;height: 100px;display: inline-block;")), book.url %>
-      <%= book.title %>
-    </div>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+   <%# if items.present? %>
+    <% items.each do |item| %>
+      <div class="item-box">
+        <div class="image">
+          <div class="img-wrap">
+            <%# if item.get("LargeImage/URL").present? %>
+              <%#= image_tag(item.get("LargeImage/URL") , alt: item.get('ItemAttributes/Title')) %>
+            <% if item.get("SmallImage/URL").present? %>
+              <%= image_tag(item.get("SmallImage/URL") , alt: item.get('ItemAttributes/Title')) %>  
+            <% else %>
+              <%= image_tag("no-image.png" , alt: item.get('ItemAttributes/Title')) %>
+            <% end %>
+
+            <%# if response['SmallImage']?=="0" then %> 
+              <%#= image_tag("no-image.png" , alt: item['itemName']) %>
+            <%# else response['imageFlag'] == "1" %>
+              <%#= image_tag item['smallImageUrls'].first['imageUrl'] , alt: item['itemName'] %>
+              <%#= link_to (image_tag(book.image_url, style: "width: 70px;height: 100px;display: inline-block;")), book.url %>
+              
+              <%#= item['Title'] %>
+            <%# end %>        
+          </div>
+        </div>
+ 
+        <div class="detail">
+          <p class="title">
+            <%= link_to item.get('ItemAttributes/Title'), item.get('DetailPageURL') %><br>
+            <%= item.get('ASIN') %>
+            
+          </p>
+         <div class="detail">
+          <p class="price">    
+            新品最安値　<%= item.get('ItemAttributes/ListPrice/Amount') %> 円(Amazon)
+            新品出品数　<%= item.get('OfferSummary/TotalNew') %> 個
+            <br>
+            中古最安値　<%= item.get('OfferSummary/LowestUsedPrice/Amount') %> 円(Amazon)
+            中古出品数　<%= item.get('OfferSummary/TotalUsed') %> 個
+            
+          </p>
+         </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+    

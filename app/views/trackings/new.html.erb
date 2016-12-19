@@ -1,0 +1,24 @@
+    <div class="search">
+    <%= form_tag new_tracking_path , method: :get do %>
+    <%= text_field_tag :q , params[:q], placeholder: "キーワードを入力", required: true %>
+    <%= submit_tag "Yamato trackingを検索", name: nil , class: "btn btn-success", data: { disable_with: "検索中..."} %>
+    <% end %>
+    </div> 
+    
+
+    <div class="search-result">
+   <% if @status.present? %>
+    <div class="alert alert-info">
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      検索結果になります。
+    </div>
+     <%= result['result'] %>
+     <%= @status %>
+
+   <% elsif params[:q].present? %>
+    <div class="alert alert-danger">
+      <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+      検索した結果はありません
+    </div>
+  <% end %>
+</div>

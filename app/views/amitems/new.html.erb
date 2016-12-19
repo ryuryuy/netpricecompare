@@ -1,3 +1,8 @@
+<% content_for :extend_menu do %>
+title:<%= @user%> - Amazon
+description:<%= @user%>のAmazonページ。[ユーザー名]の検索したAmazon表示しています。
+<% end %>
+
 <!--<div class='content'>-->
 <!--<div id="search-box">-->
     <%#= form_tag('/', method: :get) do %>
@@ -17,15 +22,16 @@
     <%= text_field_tag :q , params[:q], placeholder: "キーワードを入力", required: true %>
     <%= submit_tag "Amazonアイテムを検索", name: nil , class: "btn btn-success", data: { disable_with: "検索中..."} %>
     <% end %>
-    </div> 
+    </div>
     
     <div class="search-result">
-  <% if @items.present? %>
+  <% if response.present? %>
     <div class="alert alert-info">
       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
       Amazonでの検索結果になります。
     </div>
     <%= render 'list' , items: @items %>
+    
   <% elsif params[:q].present? %>
     <div class="alert alert-danger">
       <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>

@@ -6,26 +6,42 @@ class AmitemsController < ApplicationController
     if params[:q]
         #　デバックログ出力するために記述
       Amazon::Ecs.debug = true
-      items = Amazon::Ecs.item_search(
-        keyword: params[:q],
-        search_index:  'Books',
-        dataType: 'script',
-        response_group: 'ItemAttributes, Images',
-        country:  'jp',
-        power: "Not kindle"
-      )
-      #@items = response.first(50)
-      
-            # 本のタイトル,画像URL, 詳細ページURLの取得
-      @items = []
-      books.items.each do |item|
-        book = Book.new(
-          item.get('ItemAttributes/Title'),
-          item.get('LargeImage/URL'),
-          item.get('DetailPageURL'),
+      response = Amazon::Ecs.item_search(
+        params[:q],
+        response_group: 'Medium' ,
+        search_index: 'All' ,
+        country: 'jp',
         )
-        @items << book
-      end
+      @items = response.items
+      
+    # find elements matching 'Item' in response object
+#    @items.items.each do |item|
+      # retrieve string value using XML path
+#      item.get('ASIN')
+#      item.get('ItemAttributes/Title')
+
+      # return Amazon::Element instance
+#      item_attributes = item.get_element('ItemAttributes')
+#      item_attributes.get('Title')
+
+#      item_attributes.get_unescaped('Title') # unescape HTML entities
+#      item_attributes.get_array('Author')    # ['Author 1', 'Author 2', ...]
+#      item_attributes.get('Author')          # 'Author 1'
+
+      # return a hash object with the element names as the keys
+#      item.get_hash('SmallImage') # {:url => ..., :width => ..., :height => ...}
+
+      # return the first matching path
+      #item_height = item.get_element('ItemDimensions/Height')
+      #item_height.attributes('Units')        # 'hundredths-inches'
+
+      # there are two ways to find elements:
+      # 1) return an array of Amazon::Element
+      #reviews = item.get_elements('EditorialReview')
+       #reviews.each do |review|
+        #review.get('Content')
+      # end
+#    end  
     end
   end
 
