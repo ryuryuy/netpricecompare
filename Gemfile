@@ -33,7 +33,7 @@ gem 'bootstrap-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-#gem 'rakuten_web_service'
+gem 'rakuten_web_service'
 gem 'amazon-ecs'
 #group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

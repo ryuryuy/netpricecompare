@@ -19,20 +19,29 @@ description:<%= @user%>のAmazonページ。[ユーザー名]の検索したAmaz
     
     <div class="search">
     <%= form_tag new_amitem_path , method: :get do %>
-    <%= text_field_tag :q , params[:q], placeholder: "キーワードを入力", required: true %>
+    <%= text_field_tag :a , params[:a], placeholder: "キーワードを入力", required: true %>
     <%= submit_tag "Amazonアイテムを検索", name: nil , class: "btn btn-success", data: { disable_with: "検索中..."} %>
     <% end %>
     </div>
     
     <div class="search-result">
   <% if response.present? %>
-    <div class="alert alert-info">
-      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      Amazonでの検索結果になります。
-    </div>
-    <%= render 'list' , items: @items %>
+  <!-- rakutenとAmazonを分けるために記載 -->
+      <% if params[:a].present? %>
+         <div class="alert alert-info">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+           Amazonでの検索結果になります。
+         </div>
+          <%= render 'list' , items: @items %>
+  <!-- rakutenとAmazonを分けるために記載 -->  
+      <% elsif %>
+         <div class="alert alert-danger">
+         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+          検索したアイテムはありません
+         </div>
+      <% end %>
     
-  <% elsif params[:q].present? %>
+  <% elsif params[:a].present? %>
     <div class="alert alert-danger">
       <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
       検索したアイテムはありません

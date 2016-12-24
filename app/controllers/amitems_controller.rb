@@ -3,11 +3,11 @@ class AmitemsController < ApplicationController
   before_action :set_item, only: [:show]
 
   def new
-    if params[:q]
+    if params[:a]
         #　デバックログ出力するために記述
       Amazon::Ecs.debug = true
       response = Amazon::Ecs.item_search(
-        params[:q],
+        params[:a],
         response_group: 'Medium' ,
         search_index: 'All' ,
         country: 'jp',
