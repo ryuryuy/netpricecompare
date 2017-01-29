@@ -28,12 +28,13 @@
           <p class="title">
             <%= link_to item.get('ItemAttributes/Title'), item.get('DetailPageURL') %><br>
             <%= item.get('ASIN') %>
-            
           </p>
          <div class="detail">
-          <p class="price">    
-          　Ranking <%= item.get('SalesRank') %> 位　<br>
-          　新品最安値　<%= item.get('OfferSummary/LowestNewPrice/Amount') %> 円(Amazon)<br>
+          <p class="price"> 
+          Ranking <%= item.get('SalesRank') %> 位
+          　<br>
+          新品最安値　<%= item.get('OfferSummary/LowestNewPrice/Amount') %> 円(Amazon)
+          　<br>
             新品最安値　<%= item.get('ItemAttributes/ListPrice/Amount') %> 円(Amazon)
             新品出品数　<%= item.get('OfferSummary/TotalNew') %> 個
             <br>

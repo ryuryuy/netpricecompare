@@ -1,0 +1,39 @@
+<% content_for :extend_menu do %>
+title:<%= @user%> - Amazon
+description:<%= @user%>のAmazonページ。[ユーザー名]の検索したAmazon表示しています。
+<% end %>
+
+    <div class="search">
+    <%= form_tag new_rankpchardwareitem_path , method: :get do %>
+    <%= text_field_tag :a , params[:a], placeholder: "キーワードを入力", required: true %>
+    <%= submit_tag "Amazon PCHardwareアイテムを検索", name: nil , class: "btn btn-success", data: { disable_with: "検索中..."} %>
+    <% end %>
+    </div>
+    
+    <div class="search-result">
+  <% if response.present? %>
+  <!-- rakutenとAmazonを分けるために記載 -->
+      <% if params[:a].present? %>
+         <div class="alert alert-info">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+           Amazonでの検索結果になります。<br>
+           <%= link_to "PCHardwareの売れ筋ランキング", "https://www.amazon.co.jp/gp/bestsellers/computers" %>
+         </div>
+          <%= render 'listpchardware' , items: @items %>
+  <!-- rakutenとAmazonを分けるために記載 -->  
+      <% elsif %>
+         <div class="alert alert-danger">
+         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+          検索したアイテムはありません <br>
+          <%= link_to "PCHardwareの売れ筋ランキング", "https://www.amazon.co.jp/gp/bestsellers/computers" %>
+         </div>
+      <% end %>
+    
+  <% elsif params[:a].present? %>
+    <div class="alert alert-danger">
+      <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+      検索したアイテムはありません <br>
+      <%= link_to "PCHardwareの売れ筋ランキング", "https://www.amazon.co.jp/gp/bestsellers/computers" %>
+    </div>
+  <% end %>
+</div>

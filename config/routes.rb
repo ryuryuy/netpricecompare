@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   resources :items , only: [:new , :show]
   resources :amitems , only: [:new , :show]
   resources :trackings , only: [:new , :show]
+  resources :ranktoyitems , only: [:new , :show]
+  resources :rankbookitems , only: [:new , :show]
+  resources :rankwatchitems , only: [:new , :show]
+  resources :rankjewelryitems , only: [:new , :show]
+  resources :rankelectronicsitems , only: [:new , :show]
+  resources :rankpchardwareitems , only: [:new , :show]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
